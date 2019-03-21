@@ -13,8 +13,8 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
-      - id: $${ADMIN_USER}
-        password: $${ADMIN_PASSWORD}
+      - id: $${ADMIN_USER:-Admin}
+        password: $${ADMIN_PASSWORD:-Password}
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
@@ -58,7 +58,17 @@ credentials:
               privateKey: $${GITPRIVATEKEY}
 jobs:
   - script: >
-      pipelineJob("Generate_IAM_Policies_Operations") {
+      folder('Infrastructure')
+  - script: >
+      folder('LMA')
+  - script: >
+      folder('Deployment')
+  - script: >
+      folder('Experimental')
+
+  - script: >
+      pipelineJob("Experimental/Generate_IAM_Policies_Operations") {
+        displayName('Generate IAM Policies for KOPS in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -70,14 +80,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("operations/iam/create/${iam_jobs_path}/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Generate_IAM_Policies_Application") {
+      pipelineJob("Experimental/Generate_IAM_Policies_Application") {
+        displayName('Generate IAM Policies for KOPS in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -89,14 +100,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("application/iam/create/${iam_jobs_path}/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Kubernetes_Install") {
+      pipelineJob("Infrastructure/Kubernetes_Install_EKS_Operations_Account") {
+        displayName('Create EKS cluster in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -108,14 +120,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
-            scriptPath("operations/kubernetes/install/Jenkinsfile")
+            scriptPath("operations/kubernetes/install_eks/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Kubernetes_Destroy") {
+      pipelineJob("Infrastructure/Kubernetes_Destroy_EKS_Operations_Account") {
+        displayName('Remove EKS cluster in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -127,14 +140,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
-            scriptPath("operations/kubernetes/destroy/Jenkinsfile")
+            scriptPath("operations/kubernetes/destroy_eks/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Install_Kubernetes_Application_Account") {
+      pipelineJob("Infrastructure/Install_Kubernetes_EKS_Application_Account") {
+        displayName('Create EKS cluster in Application Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -146,14 +160,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("application/kubernetes/install_eks/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Generate_JX_Docker_Image") {
+      pipelineJob("Infrastructure/Destroy_Kubernetes_EKS_Application_Account") {
+        displayName('Remove EKS cluster in Application Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -165,14 +180,115 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
+              }
+            }
+            scriptPath("application/kubernetes/destroy_eks/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("Experimental/Kubernetes_Install_KOPS_OperationsAccount") {
+        displayName('Create KOPS cluster in Operations Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("operations/kubernetes/install_kops/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("Experimental/Kubernetes_Destroy_KOPS_OperationsAccount") {
+        displayName('Remove KOPS cluster in Operations Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("operations/kubernetes/destroy_kops/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("Experimental/Kubernetes_Install_KOPS_ApplicationAccount") {
+        displayName('Create KOPS cluster in Application Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("application/kubernetes/install_kops/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("Experimental/Kubernetes_Destroy_KOPS_ApplicationAccount") {
+        displayName('Remove KOPS cluster in Application Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("application/kubernetes/destroy_kops/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("Experimental/Generate_JX_Docker_Image") {
+        displayName('Generate JenkinsX Image')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
               }
             }
             scriptPath("operations/images/jenkins-x-image/Jenkinsfile")
           }
         }
        }
-      pipelineJob("JX_Install") {
+      pipelineJob("Experimental/JX_Install") {
+        displayName('Deploy JenkinsX in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -191,7 +307,8 @@ jobs:
           }
         }
        }
-      pipelineJob("JX_Destroy") {
+      pipelineJob("Experimental/JX_Destroy") {
+        displayName('Destroy JenkinsX in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -210,10 +327,14 @@ jobs:
           }
         }
        }
-      pipelineJob("Grafana_Install") {
+      pipelineJob("LMA/Grafana_Install") {
+        displayName('Deploy Grafana in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
         definition {
           cpsScm {
             scm {
@@ -222,17 +343,21 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("operations/grafana/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Grafana_Destroy") {
+      pipelineJob("LMA/Grafana_Destroy") {
+        displayName('Destroy Grafana in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
         definition {
           cpsScm {
             scm {
@@ -241,17 +366,21 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("operations/grafana/destroy/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Prometheus_ops_Install") {
+      pipelineJob("LMA/Ingress_ops_Install") {
+        displayName('Create Ingress in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
         definition {
           cpsScm {
             scm {
@@ -260,17 +389,113 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
+              }
+            }
+            scriptPath("operations/ingress/install/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("LMA/Ingress_ops_Destroy") {
+        displayName('Remove Ingress in Operations Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("operations/ingress/destroy/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("LMA/Prometheus_app_Install") {
+        displayName('Deploy Prometheus in Application Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("application/prometheus/install/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("LMA/Prometheus_app_Destroy") {
+        displayName('Destroy Prometheus in Application Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
+              }
+            }
+            scriptPath("application/prometheus/destroy/Jenkinsfile")
+          }
+        }
+       }
+      pipelineJob("LMA/Prometheus_ops_Install") {
+        displayName('Deploy Prometheus in Operations Account')
+        description()
+        disabled(false)
+        keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("${jenkins_job_repo_url}")
+                  credentials("bitbucket-key")
+                }
+                branch("0.4.0")
               }
             }
             scriptPath("operations/prometheus/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Prometheus_ops_Destroy") {
+      pipelineJob("LMA/Prometheus_ops_Destroy") {
+        displayName('Destroy Prometheus in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
+        parameters {
+           choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
+        }
         definition {
           cpsScm {
             scm {
@@ -279,7 +504,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.3.0")
+                branch("0.4.0")
               }
             }
             scriptPath("operations/prometheus/destroy/Jenkinsfile")

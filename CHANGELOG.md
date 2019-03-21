@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Job folders: Infrastructure, EKS, Deployment, Extras
+- Job for separate eks/kops deployments
+- Job for Prometheus on application cluster
+- Job for Ingress on operations cluster
+
+### Changed 
+- Move jobs to folders
+- Grafana and Prometheus job updated to support eks/kops
+- Jobs displays name updated 
+
 ## [0.3.1] - 2019-03-11
 ## Added
 - New job to deploy EKS into application account
