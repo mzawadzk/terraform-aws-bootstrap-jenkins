@@ -80,7 +80,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/iam/create/${iam_jobs_path}/Jenkinsfile")
@@ -100,7 +100,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/iam/create/${iam_jobs_path}/Jenkinsfile")
@@ -120,14 +120,14 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/kubernetes/install_eks/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Infrastructure/Kubernetes_Destroy_EKS_Operations_Account") {
+      pipelineJob("Infrastructure/Kubernetes_Remove_EKS_Operations_Account") {
         displayName('Remove EKS cluster in Operations Account')
         description()
         disabled(false)
@@ -140,7 +140,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/kubernetes/destroy_eks/Jenkinsfile")
@@ -160,14 +160,14 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/kubernetes/install_eks/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Infrastructure/Destroy_Kubernetes_EKS_Application_Account") {
+      pipelineJob("Infrastructure/Remove_Kubernetes_EKS_Application_Account") {
         displayName('Remove EKS cluster in Application Account')
         description()
         disabled(false)
@@ -180,7 +180,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/kubernetes/destroy_eks/Jenkinsfile")
@@ -200,14 +200,14 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/kubernetes/install_kops/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Experimental/Kubernetes_Destroy_KOPS_OperationsAccount") {
+      pipelineJob("Experimental/Kubernetes_Remove_KOPS_OperationsAccount") {
         displayName('Remove KOPS cluster in Operations Account')
         description()
         disabled(false)
@@ -220,7 +220,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/kubernetes/destroy_kops/Jenkinsfile")
@@ -240,14 +240,14 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/kubernetes/install_kops/Jenkinsfile")
           }
         }
        }
-      pipelineJob("Experimental/Kubernetes_Destroy_KOPS_ApplicationAccount") {
+      pipelineJob("Experimental/Kubernetes_Remove_KOPS_ApplicationAccount") {
         displayName('Remove KOPS cluster in Application Account')
         description()
         disabled(false)
@@ -260,7 +260,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/kubernetes/destroy_kops/Jenkinsfile")
@@ -280,7 +280,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/images/jenkins-x-image/Jenkinsfile")
@@ -307,8 +307,8 @@ jobs:
           }
         }
        }
-      pipelineJob("Experimental/JX_Destroy") {
-        displayName('Destroy JenkinsX in Operations Account')
+      pipelineJob("Experimental/JX_Remove") {
+        displayName('Remove JenkinsX in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -343,15 +343,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/grafana/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("LMA/Grafana_Destroy") {
-        displayName('Destroy Grafana in Operations Account')
+      pipelineJob("LMA/Grafana_Remove") {
+        displayName('Remove Grafana in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -366,7 +366,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/grafana/destroy/Jenkinsfile")
@@ -389,14 +389,14 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/ingress/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("LMA/Ingress_ops_Destroy") {
+      pipelineJob("LMA/Ingress_ops_Remove") {
         displayName('Remove Ingress in Operations Account')
         description()
         disabled(false)
@@ -412,7 +412,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/ingress/destroy/Jenkinsfile")
@@ -435,15 +435,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/prometheus/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("LMA/Prometheus_app_Destroy") {
-        displayName('Destroy Prometheus in Application Account')
+      pipelineJob("LMA/Prometheus_app_Remove") {
+        displayName('Remove Prometheus in Application Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -458,7 +458,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("application/prometheus/destroy/Jenkinsfile")
@@ -481,15 +481,15 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/prometheus/install/Jenkinsfile")
           }
         }
        }
-      pipelineJob("LMA/Prometheus_ops_Destroy") {
-        displayName('Destroy Prometheus in Operations Account')
+      pipelineJob("LMA/Prometheus_ops_Remove") {
+        displayName('Remove Prometheus in Operations Account')
         description()
         disabled(false)
         keepDependencies(false)
@@ -504,7 +504,7 @@ jobs:
                   url("${jenkins_job_repo_url}")
                   credentials("bitbucket-key")
                 }
-                branch("0.4.0")
+                branch("0.4.1")
               }
             }
             scriptPath("operations/prometheus/destroy/Jenkinsfile")

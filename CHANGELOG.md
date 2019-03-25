@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2019-03-25
+### Changed 
+- Bump jobs version to 0.4.1
+- Rename jobs from Destroy to Remove 
+
 ## [0.4.0] - 2019-03-21
 ### Added
 - Job folders: Infrastructure, EKS, Deployment, Extras
