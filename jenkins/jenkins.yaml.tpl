@@ -88,7 +88,7 @@ jobs:
         }
        }
       pipelineJob("Experimental/Generate_IAM_Policies_Application") {
-        displayName('Generate IAM Policies for KOPS in Operations Account')
+        displayName('Generate IAM Policies for KOPS in Application Account')
         description()
         disabled(false)
         keepDependencies(false)
