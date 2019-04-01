@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2019-04-01
+### Fixed
+- Fix for incorrect param for grafana install job
+
 ## [0.5.0] - 2019-04-01
 ### Fixed
 - Fix for not starting jenkins at server creation

@@ -333,8 +333,7 @@ jobs:
         keepDependencies(false)
         parameters {
            choiceParam('K8S_FLAVOR',["eks", "kops"],'Choose type of Kubernetes cluster (required for kops)')
-           string(name: 'GRAFANA_PV', defaultValue: "",                            
-                  description: 'Name of existing PV to use for Grafana storage (usually "pvc-*"), leave empty if this is first deployment')
+           stringParam('GRAFANA_PV', "", 'Name of existing PV to use for Grafana storage (usually "pvc-*"), leave empty if this is first deployment')
         }
         definition {
           cpsScm {
