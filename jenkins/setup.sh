@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
+chmod a+x /etc/init.d/jenkins
 
 export JENKINS_UC=https://updates.jenkins.io
 ln -s /usr/lib/jenkins/jenkins.war /usr/share/jenkins/jenkins.war
@@ -38,5 +39,7 @@ sleep 10
 systemctl status jenkins.service
 
 echo "Attempt to stop and start jenkins done"
+
+(crontab -l 2>/dev/null; echo "*/1 * * * * systemctl show -p SubState jenkins |grep -E 'running|dead' || systemctl restart jenkins") | crontab -
 
 set +x
