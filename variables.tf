@@ -134,3 +134,8 @@ variable "region" {
   description = "AWS region"
   default     = "eu-central-1"
 }
+
+variable "jenkins_additional_jcasc" {
+  description = "Path to directory containing aditional Jenkins configuration as code files; empty string is for disable"
+  default     = ""
+}
