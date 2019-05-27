@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2019-05-27
+### Fixed
+- Fix incorrect variable region for cross account role 
+### Changed
+- Upgrade tls provider to 2.0
+- Add ignore user_data change to prevent recreation of master node 
+
 ## [0.8.0] - 2019-05-22
 ### Added
 - New jobs for VPC Endpoint Service in app account
@@ -15,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix handling secrets after reboot 
 
-### Changed
+
 - Secrets for jenkins moved to /etc/secrets/jenkins/ 
 
 ### Added
