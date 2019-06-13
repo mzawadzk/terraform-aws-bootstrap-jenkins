@@ -13,7 +13,7 @@ func TestTerraformInitPlan(t *testing.T) {
 		// The path to where our Terraform code is located
 		TerraformDir: "../",
 
-		VarFiles: []string{"terraform.tfvars"},
+		VarFiles: []string{"test/terraform.tfvars"},
 	}
 
 	// This will run `terraform init` and `terraform plan` and fail the test if there are any errors
