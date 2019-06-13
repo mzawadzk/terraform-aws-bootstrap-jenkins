@@ -25,8 +25,8 @@ data "template_file" "user_data" {
   template = "${file("${path.module}/user-data.tpl")}"
 
   vars {
-    proxy_info        = "${length(var.http_proxy) > 0 ? local.proxy_exports : var.http_proxy }"
-    docker_proxy_info = "${length(var.http_proxy) > 0 ? local.docker_proxy : var.http_proxy }"
+    proxy_info        = "${length(var.http_proxy) > 0 ? local.proxy_exports : var.http_proxy}"
+    docker_proxy_info = "${length(var.http_proxy) > 0 ? local.docker_proxy : var.http_proxy}"
   }
 }
 
@@ -59,7 +59,7 @@ data "template_file" "jenkins-jenkins_yaml" {
     jenkins_no_proxy_list          = "${local.jenkins_no_proxy_list}"
     jenkins_proxy_http             = "${local.jenkins_proxy_http}"
 
-    iam_jobs_path = "${var.auto_IAM_mode == 1 ? "auto" : "manual" }"
+    iam_jobs_path = "${var.auto_IAM_mode == 1 ? "auto" : "manual"}"
 
     product_domain_name     = "${var.product_domain_name}"
     environment_type        = "${var.environment_type}"
@@ -77,7 +77,7 @@ data "aws_route53_zone" "selected" {
 }
 
 data "aws_iam_policy" "this" {
-  count = "${length(split(",",local.iam_policy_names_list))}"
+  count = "${length(split(",", local.iam_policy_names_list))}"
   arn   = "arn:aws:iam::${var.operations_aws_account_number}:policy${local.iam_policy_names_prefix}${element(split(",", local.iam_policy_names_list), count.index)}${local.iam_policy_names_sufix}"
 }
 
