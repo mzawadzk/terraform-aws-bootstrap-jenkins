@@ -16,7 +16,7 @@ func TestTerraformInitPlan(t *testing.T) {
 		VarFiles: []string{"test/terraform.tfvars"},
 
         EnvVars: map[string]string{
-            "AWS_DEFAULT_REGION": "eu-central-1"
+            "AWS_DEFAULT_REGION": "eu-central-1",
       },
 	}
 
