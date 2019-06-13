@@ -1,3 +1,4 @@
+region="eu-central-1"
 product_domain_name="test_domain"
 environment_type="test"
 operations_aws_account_number="123456789012"
