@@ -139,3 +139,8 @@ variable "jenkins_additional_jcasc" {
   description = "Path to directory containing aditional Jenkins configuration as code files; empty string is for disable"
   default     = ""
 }
+
+# workaround for tests with metadata server
+variable "metadata_server_url" {
+  default = "http://169.254.169.254/latest/meta-data/local-ipv4"
+}

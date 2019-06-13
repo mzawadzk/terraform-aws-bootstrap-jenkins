@@ -7,3 +7,4 @@ vpc_id = "vpc-XXXXXX"
 subnet_id = "subnet-ZXC"
 jenkins_config_repo_url = "ssh://git@github.com:kentrikos/env-config.git"
 jenkins_dns_domain_hosted_zone_ID = "ABCDEFGHIJKLMN"
+metadata_server_url="http://google.com" # fake just for passing terraform plan

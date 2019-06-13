@@ -68,7 +68,7 @@ data "template_file" "jenkins-jenkins_yaml" {
 }
 
 data "http" "ip_priv" {
-  url = "http://169.254.169.254/latest/meta-data/local-ipv4"
+  url = "${var.metadata_server_url}"
 }
 
 # Route53 configuration for the Jenkins master:
