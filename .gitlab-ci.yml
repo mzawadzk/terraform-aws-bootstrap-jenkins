@@ -14,17 +14,18 @@ before_script:
 
 ## JOBS:
 # Check Terraform formatting:
-job-format:
+job-terraform-format:
   script:
     - terraform fmt -check
 
-# Run terraform init:
+# Run terraform init via terratest:
 job-terratest-terraform-init:
   script:
     - cd test
     - go test -v -run TestTerraformInit
 
 # Run terraform validate:
-job-format:
+job-terraform-validate:
   script:
+    - terraform init
     - terraform validate -var-file test/terraform.tfvars
