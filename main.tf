@@ -3,7 +3,7 @@ resource "random_id" "jenkins" {
 }
 
 resource "tls_private_key" "jenkins_master_node_key" {
-  algorithm = "RSA"
+      algorithm = "RSA"
   rsa_bits  = 4096
 }
 
