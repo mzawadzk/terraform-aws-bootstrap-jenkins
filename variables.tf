@@ -1,5 +1,6 @@
 variable "product_domain_name" {
   description = "(Required) Name of product domain, will be used to create other names"
+  bad_field   = "This is wrong"
 }
 
 variable "environment_type" {
