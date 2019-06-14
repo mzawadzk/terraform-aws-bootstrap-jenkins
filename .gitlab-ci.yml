@@ -26,6 +26,8 @@ job-terratest-terraform-init:
 
 # Run terraform validate:
 job-terraform-validate:
+  variables:
+     AWS_REGION: "eu-central-1"
   script:
     - terraform init
     - terraform validate -var-file test/terraform.tfvars
