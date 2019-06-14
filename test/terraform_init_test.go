@@ -6,7 +6,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformInitPlan(t *testing.T) {
+func TestTerraformInit(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := &terraform.Options{
@@ -21,5 +21,5 @@ func TestTerraformInitPlan(t *testing.T) {
 	}
 
 	// This will run `terraform init` and `terraform plan` and fail the test if there are any errors
-	terraform.InitAndPlan(t, terraformOptions)
+	terraform.Init(t, terraformOptions)
 }

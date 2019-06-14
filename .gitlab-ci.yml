@@ -18,8 +18,13 @@ job-format:
   script:
     - terraform fmt -check
 
-# Run terraform init and plan:
-job-terraform-init-and-plan:
+# Run terraform init:
+job-terratest-terraform-init:
   script:
     - cd test
-    - go test -v -run TestTerraformInitPlan
+    - go test -v -run TestTerraformInit
+
+# Run terraform validate:
+job-format:
+  script:
+    - terraform validate -var-file test/terraform.tfvars
